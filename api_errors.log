@@ -1,0 +1,240 @@
+ERROR:root:Ошибка: int() argument must be a string, a bytes-like object or a real number, not 'ellipsis'
+ERROR:root:Ошибка: int() argument must be a string, a bytes-like object or a real number, not 'ellipsis'
+ERROR:root:Ошибка: int() argument must be a string, a bytes-like object or a real number, not 'ellipsis'
+ERROR:root:Ошибка: int() argument must be a string, a bytes-like object or a real number, not 'ellipsis'
+ERROR:root:Ошибка: int() argument must be a string, a bytes-like object or a real number, not 'ellipsis'
+ERROR:root:Ошибка: int() argument must be a string, a bytes-like object or a real number, not 'ellipsis'
+ERROR:root:Ошибка: int() argument must be a string, a bytes-like object or a real number, not 'ellipsis'
+ERROR:root:Ошибка: int() argument must be a string, a bytes-like object or a real number, not 'ellipsis'
+ERROR:root:Ошибка: int() argument must be a string, a bytes-like object or a real number, not 'ellipsis'
+ERROR:root:Фатальная ошибка: (psycopg2.errors.InvalidColumnReference) ОШИБКА:  нет уникального ограничения или ограничения-исключения, соответствующего указанию ON CONFLICT
+
+[SQL: INSERT INTO sensor_data (timestamp, pipe_number, sensor_type, sensor_number, value) VALUES (%(timestamp__0)s, %(pipe_number__0)s, %(sensor_type__0)s, %(sensor_number__0)s, %(value__0)s), (%(timestamp__1)s, %(pipe_number__1)s, %(sensor_type__1)s, %(se ... 105265 characters truncated ... __999)s, %(value__999)s) ON CONFLICT (timestamp, pipe_number, sensor_type, sensor_number) DO NOTHING]
+[parameters: {'sensor_type__0': 'K', 'value__0': 542.7935887, 'timestamp__0': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__0': 'T1', 'sensor_number__0': 1, 'sensor_type__1': 'K', 'value__1': 600.5626127, 'timestamp__1': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__1': 'T1', 'sensor_number__1': 3, 'sensor_type__2': 'K', 'value__2': 503.3211249, 'timestamp__2': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__2': 'T1', 'sensor_number__2': 2, 'sensor_type__3': 'L', 'value__3': 93.81437412, 'timestamp__3': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__3': 'T1', 'sensor_number__3': 1, 'sensor_type__4': 'L', 'value__4': 179.0020105, 'timestamp__4': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__4': 'T1', 'sensor_number__4': 2, 'sensor_type__5': 'L', 'value__5': 175.973677, 'timestamp__5': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__5': 'T1', 'sensor_number__5': 3, 'sensor_type__6': 'R', 'value__6': 297.9638593, 'timestamp__6': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__6': 'T1', 'sensor_number__6': 1, 'sensor_type__7': 'R', 'value__7': 367.4861756, 'timestamp__7': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__7': 'T1', 'sensor_number__7': 2, 'sensor_type__8': 'R', 'value__8': 303.4263482, 'timestamp__8': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__8': 'T1', 'sensor_number__8': 3, 'sensor_type__9': 'Up', 'value__9': 8.636702837, 'timestamp__9': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__9': 'T1', 'sensor_number__9': 1 ... 4900 parameters truncated ... 'sensor_type__990': 'K', 'value__990': 502.4120808, 'timestamp__990': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__990': 'T1', 'sensor_number__990': 2, 'sensor_type__991': 'L', 'value__991': 93.76088763, 'timestamp__991': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__991': 'T1', 'sensor_number__991': 1, 'sensor_type__992': 'L', 'value__992': 179.3740248, 'timestamp__992': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__992': 'T1', 'sensor_number__992': 2, 'sensor_type__993': 'L', 'value__993': 175.3579313, 'timestamp__993': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__993': 'T1', 'sensor_number__993': 3, 'sensor_type__994': 'R', 'value__994': 298.2517017, 'timestamp__994': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__994': 'T1', 'sensor_number__994': 1, 'sensor_type__995': 'R', 'value__995': 367.538671, 'timestamp__995': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__995': 'T1', 'sensor_number__995': 2, 'sensor_type__996': 'R', 'value__996': 302.4710898, 'timestamp__996': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__996': 'T1', 'sensor_number__996': 3, 'sensor_type__997': 'Up', 'value__997': 8.155057583, 'timestamp__997': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__997': 'T1', 'sensor_number__997': 1, 'sensor_type__998': 'Up', 'value__998': -55.68599223, 'timestamp__998': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__998': 'T1', 'sensor_number__998': 2, 'sensor_type__999': 'Up', 'value__999': 26.74018597, 'timestamp__999': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__999': 'T1', 'sensor_number__999': 3}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+ERROR:root:Фатальная ошибка: (psycopg2.errors.InvalidColumnReference) ОШИБКА:  нет уникального ограничения или ограничения-исключения, соответствующего указанию ON CONFLICT
+
+[SQL: INSERT INTO sensor_data (timestamp, pipe_number, sensor_type, sensor_number, value) VALUES (%(timestamp__0)s, %(pipe_number__0)s, %(sensor_type__0)s, %(sensor_number__0)s, %(value__0)s), (%(timestamp__1)s, %(pipe_number__1)s, %(sensor_type__1)s, %(se ... 105265 characters truncated ... __999)s, %(value__999)s) ON CONFLICT (timestamp, pipe_number, sensor_type, sensor_number) DO NOTHING]
+[parameters: {'pipe_number__0': 'T1', 'value__0': 542.7935887, 'sensor_type__0': 'K', 'sensor_number__0': 1, 'timestamp__0': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__1': 'T1', 'value__1': 600.5626127, 'sensor_type__1': 'K', 'sensor_number__1': 3, 'timestamp__1': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__2': 'T1', 'value__2': 503.3211249, 'sensor_type__2': 'K', 'sensor_number__2': 2, 'timestamp__2': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__3': 'T1', 'value__3': 93.81437412, 'sensor_type__3': 'L', 'sensor_number__3': 1, 'timestamp__3': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__4': 'T1', 'value__4': 179.0020105, 'sensor_type__4': 'L', 'sensor_number__4': 2, 'timestamp__4': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__5': 'T1', 'value__5': 175.973677, 'sensor_type__5': 'L', 'sensor_number__5': 3, 'timestamp__5': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__6': 'T1', 'value__6': 297.9638593, 'sensor_type__6': 'R', 'sensor_number__6': 1, 'timestamp__6': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__7': 'T1', 'value__7': 367.4861756, 'sensor_type__7': 'R', 'sensor_number__7': 2, 'timestamp__7': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__8': 'T1', 'value__8': 303.4263482, 'sensor_type__8': 'R', 'sensor_number__8': 3, 'timestamp__8': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'pipe_number__9': 'T1', 'value__9': 8.636702837, 'sensor_type__9': 'Up', 'sensor_number__9': 1, 'timestamp__9': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000) ... 4900 parameters truncated ... 'pipe_number__990': 'T1', 'value__990': 502.4120808, 'sensor_type__990': 'K', 'sensor_number__990': 2, 'timestamp__990': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__991': 'T1', 'value__991': 93.76088763, 'sensor_type__991': 'L', 'sensor_number__991': 1, 'timestamp__991': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__992': 'T1', 'value__992': 179.3740248, 'sensor_type__992': 'L', 'sensor_number__992': 2, 'timestamp__992': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__993': 'T1', 'value__993': 175.3579313, 'sensor_type__993': 'L', 'sensor_number__993': 3, 'timestamp__993': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__994': 'T1', 'value__994': 298.2517017, 'sensor_type__994': 'R', 'sensor_number__994': 1, 'timestamp__994': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__995': 'T1', 'value__995': 367.538671, 'sensor_type__995': 'R', 'sensor_number__995': 2, 'timestamp__995': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__996': 'T1', 'value__996': 302.4710898, 'sensor_type__996': 'R', 'sensor_number__996': 3, 'timestamp__996': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__997': 'T1', 'value__997': 8.155057583, 'sensor_type__997': 'Up', 'sensor_number__997': 1, 'timestamp__997': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__998': 'T1', 'value__998': -55.68599223, 'sensor_type__998': 'Up', 'sensor_number__998': 2, 'timestamp__998': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'pipe_number__999': 'T1', 'value__999': 26.74018597, 'sensor_type__999': 'Up', 'sensor_number__999': 3, 'timestamp__999': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+ERROR:root:Фатальная ошибка: (psycopg2.errors.UndefinedObject) ОШИБКА:  ограничение "unique_measurement" для таблицы "sensor_data" не существует
+
+[SQL: INSERT INTO sensor_data (timestamp, pipe_number, sensor_type, sensor_number, value) VALUES (%(timestamp__0)s, %(pipe_number__0)s, %(sensor_type__0)s, %(sensor_number__0)s, %(value__0)s), (%(timestamp__1)s, %(pipe_number__1)s, %(sensor_type__1)s, %(se ... 105245 characters truncated ... 9)s, %(sensor_number__999)s, %(value__999)s) ON CONFLICT ON CONSTRAINT unique_measurement DO NOTHING]
+[parameters: {'sensor_type__0': 'K', 'sensor_number__0': 1, 'pipe_number__0': 'T1', 'value__0': 542.7935887, 'timestamp__0': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__1': 'K', 'sensor_number__1': 3, 'pipe_number__1': 'T1', 'value__1': 600.5626127, 'timestamp__1': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__2': 'K', 'sensor_number__2': 2, 'pipe_number__2': 'T1', 'value__2': 503.3211249, 'timestamp__2': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__3': 'L', 'sensor_number__3': 1, 'pipe_number__3': 'T1', 'value__3': 93.81437412, 'timestamp__3': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__4': 'L', 'sensor_number__4': 2, 'pipe_number__4': 'T1', 'value__4': 179.0020105, 'timestamp__4': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__5': 'L', 'sensor_number__5': 3, 'pipe_number__5': 'T1', 'value__5': 175.973677, 'timestamp__5': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__6': 'R', 'sensor_number__6': 1, 'pipe_number__6': 'T1', 'value__6': 297.9638593, 'timestamp__6': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__7': 'R', 'sensor_number__7': 2, 'pipe_number__7': 'T1', 'value__7': 367.4861756, 'timestamp__7': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__8': 'R', 'sensor_number__8': 3, 'pipe_number__8': 'T1', 'value__8': 303.4263482, 'timestamp__8': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__9': 'Up', 'sensor_number__9': 1, 'pipe_number__9': 'T1', 'value__9': 8.636702837, 'timestamp__9': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000) ... 4900 parameters truncated ... 'sensor_type__990': 'K', 'sensor_number__990': 2, 'pipe_number__990': 'T1', 'value__990': 502.4120808, 'timestamp__990': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__991': 'L', 'sensor_number__991': 1, 'pipe_number__991': 'T1', 'value__991': 93.76088763, 'timestamp__991': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__992': 'L', 'sensor_number__992': 2, 'pipe_number__992': 'T1', 'value__992': 179.3740248, 'timestamp__992': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__993': 'L', 'sensor_number__993': 3, 'pipe_number__993': 'T1', 'value__993': 175.3579313, 'timestamp__993': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__994': 'R', 'sensor_number__994': 1, 'pipe_number__994': 'T1', 'value__994': 298.2517017, 'timestamp__994': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__995': 'R', 'sensor_number__995': 2, 'pipe_number__995': 'T1', 'value__995': 367.538671, 'timestamp__995': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__996': 'R', 'sensor_number__996': 3, 'pipe_number__996': 'T1', 'value__996': 302.4710898, 'timestamp__996': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__997': 'Up', 'sensor_number__997': 1, 'pipe_number__997': 'T1', 'value__997': 8.155057583, 'timestamp__997': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__998': 'Up', 'sensor_number__998': 2, 'pipe_number__998': 'T1', 'value__998': -55.68599223, 'timestamp__998': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__999': 'Up', 'sensor_number__999': 3, 'pipe_number__999': 'T1', 'value__999': 26.74018597, 'timestamp__999': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+ERROR:root:Фатальная ошибка: (psycopg2.errors.UndefinedObject) ОШИБКА:  ограничение "unique_measurement" для таблицы "sensor_data" не существует
+
+[SQL: INSERT INTO sensor_data (timestamp, pipe_number, sensor_type, sensor_number, value) VALUES (%(timestamp__0)s, %(pipe_number__0)s, %(sensor_type__0)s, %(sensor_number__0)s, %(value__0)s), (%(timestamp__1)s, %(pipe_number__1)s, %(sensor_type__1)s, %(se ... 105245 characters truncated ... 9)s, %(sensor_number__999)s, %(value__999)s) ON CONFLICT ON CONSTRAINT unique_measurement DO NOTHING]
+[parameters: {'sensor_type__0': 'K', 'sensor_number__0': 1, 'pipe_number__0': 'T1', 'value__0': 542.7935887, 'timestamp__0': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__1': 'K', 'sensor_number__1': 3, 'pipe_number__1': 'T1', 'value__1': 600.5626127, 'timestamp__1': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__2': 'K', 'sensor_number__2': 2, 'pipe_number__2': 'T1', 'value__2': 503.3211249, 'timestamp__2': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__3': 'L', 'sensor_number__3': 1, 'pipe_number__3': 'T1', 'value__3': 93.81437412, 'timestamp__3': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__4': 'L', 'sensor_number__4': 2, 'pipe_number__4': 'T1', 'value__4': 179.0020105, 'timestamp__4': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__5': 'L', 'sensor_number__5': 3, 'pipe_number__5': 'T1', 'value__5': 175.973677, 'timestamp__5': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__6': 'R', 'sensor_number__6': 1, 'pipe_number__6': 'T1', 'value__6': 297.9638593, 'timestamp__6': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__7': 'R', 'sensor_number__7': 2, 'pipe_number__7': 'T1', 'value__7': 367.4861756, 'timestamp__7': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__8': 'R', 'sensor_number__8': 3, 'pipe_number__8': 'T1', 'value__8': 303.4263482, 'timestamp__8': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__9': 'Up', 'sensor_number__9': 1, 'pipe_number__9': 'T1', 'value__9': 8.636702837, 'timestamp__9': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000) ... 4900 parameters truncated ... 'sensor_type__990': 'K', 'sensor_number__990': 2, 'pipe_number__990': 'T1', 'value__990': 502.4120808, 'timestamp__990': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__991': 'L', 'sensor_number__991': 1, 'pipe_number__991': 'T1', 'value__991': 93.76088763, 'timestamp__991': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__992': 'L', 'sensor_number__992': 2, 'pipe_number__992': 'T1', 'value__992': 179.3740248, 'timestamp__992': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__993': 'L', 'sensor_number__993': 3, 'pipe_number__993': 'T1', 'value__993': 175.3579313, 'timestamp__993': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__994': 'R', 'sensor_number__994': 1, 'pipe_number__994': 'T1', 'value__994': 298.2517017, 'timestamp__994': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__995': 'R', 'sensor_number__995': 2, 'pipe_number__995': 'T1', 'value__995': 367.538671, 'timestamp__995': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__996': 'R', 'sensor_number__996': 3, 'pipe_number__996': 'T1', 'value__996': 302.4710898, 'timestamp__996': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__997': 'Up', 'sensor_number__997': 1, 'pipe_number__997': 'T1', 'value__997': 8.155057583, 'timestamp__997': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__998': 'Up', 'sensor_number__998': 2, 'pipe_number__998': 'T1', 'value__998': -55.68599223, 'timestamp__998': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__999': 'Up', 'sensor_number__999': 3, 'pipe_number__999': 'T1', 'value__999': 26.74018597, 'timestamp__999': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+ERROR:root:Фатальная ошибка: (psycopg2.errors.UndefinedObject) ОШИБКА:  ограничение "unique_measurement" для таблицы "sensor_data" не существует
+
+[SQL: INSERT INTO sensor_data (timestamp, pipe_number, sensor_type, sensor_number, value) VALUES (%(timestamp__0)s, %(pipe_number__0)s, %(sensor_type__0)s, %(sensor_number__0)s, %(value__0)s), (%(timestamp__1)s, %(pipe_number__1)s, %(sensor_type__1)s, %(se ... 105245 characters truncated ... 9)s, %(sensor_number__999)s, %(value__999)s) ON CONFLICT ON CONSTRAINT unique_measurement DO NOTHING]
+[parameters: {'sensor_type__0': 'K', 'sensor_number__0': 1, 'pipe_number__0': 'T1', 'value__0': 542.7935887, 'timestamp__0': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__1': 'K', 'sensor_number__1': 3, 'pipe_number__1': 'T1', 'value__1': 600.5626127, 'timestamp__1': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__2': 'K', 'sensor_number__2': 2, 'pipe_number__2': 'T1', 'value__2': 503.3211249, 'timestamp__2': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__3': 'L', 'sensor_number__3': 1, 'pipe_number__3': 'T1', 'value__3': 93.81437412, 'timestamp__3': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__4': 'L', 'sensor_number__4': 2, 'pipe_number__4': 'T1', 'value__4': 179.0020105, 'timestamp__4': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__5': 'L', 'sensor_number__5': 3, 'pipe_number__5': 'T1', 'value__5': 175.973677, 'timestamp__5': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__6': 'R', 'sensor_number__6': 1, 'pipe_number__6': 'T1', 'value__6': 297.9638593, 'timestamp__6': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__7': 'R', 'sensor_number__7': 2, 'pipe_number__7': 'T1', 'value__7': 367.4861756, 'timestamp__7': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__8': 'R', 'sensor_number__8': 3, 'pipe_number__8': 'T1', 'value__8': 303.4263482, 'timestamp__8': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000), 'sensor_type__9': 'Up', 'sensor_number__9': 1, 'pipe_number__9': 'T1', 'value__9': 8.636702837, 'timestamp__9': datetime.datetime(2024, 1, 1, 0, 6, 9, 555000) ... 4900 parameters truncated ... 'sensor_type__990': 'K', 'sensor_number__990': 2, 'pipe_number__990': 'T1', 'value__990': 502.4120808, 'timestamp__990': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__991': 'L', 'sensor_number__991': 1, 'pipe_number__991': 'T1', 'value__991': 93.76088763, 'timestamp__991': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__992': 'L', 'sensor_number__992': 2, 'pipe_number__992': 'T1', 'value__992': 179.3740248, 'timestamp__992': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__993': 'L', 'sensor_number__993': 3, 'pipe_number__993': 'T1', 'value__993': 175.3579313, 'timestamp__993': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__994': 'R', 'sensor_number__994': 1, 'pipe_number__994': 'T1', 'value__994': 298.2517017, 'timestamp__994': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__995': 'R', 'sensor_number__995': 2, 'pipe_number__995': 'T1', 'value__995': 367.538671, 'timestamp__995': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__996': 'R', 'sensor_number__996': 3, 'pipe_number__996': 'T1', 'value__996': 302.4710898, 'timestamp__996': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__997': 'Up', 'sensor_number__997': 1, 'pipe_number__997': 'T1', 'value__997': 8.155057583, 'timestamp__997': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__998': 'Up', 'sensor_number__998': 2, 'pipe_number__998': 'T1', 'value__998': -55.68599223, 'timestamp__998': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000), 'sensor_type__999': 'Up', 'sensor_number__999': 3, 'pipe_number__999': 'T1', 'value__999': 26.74018597, 'timestamp__999': datetime.datetime(2024, 1, 1, 0, 18, 49, 525000)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+ERROR:root:Фатальная ошибка: argument of type 'NoneType' is not iterable
+ERROR:root:Ошибка: 400: Неверный формат sensor_id
+ERROR:root:Ошибка: 400: Неверный формат sensor_id
+ERROR:root:Ошибка: 400: Неверный формат sensor_id
+ERROR:root:Ошибка: 400: Неверный формат sensor_id
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 437, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 437, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 437, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'max'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 449, in check_alert
+    threshold = extremes.max * 0.9
+                ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'max'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 450, in check_alert
+    avg = (extremes.min + extremes.max) / 2
+           ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 451, in check_alert
+    avg = (extremes.min + extremes.max) / 2
+           ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
