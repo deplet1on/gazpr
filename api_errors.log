@@ -238,3 +238,9 @@ Traceback (most recent call last):
     if extremes.min is None or extremes.max is None:
        ^^^^^^^^^^^^
 AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка: 400: Неверный формат sensor_id
+ERROR:root:Ошибка: 400: Неверный формат sensor_id
+ERROR:root:Фатальная ошибка: 'coroutine' object has no attribute 'alert'
+ERROR:root:Фатальная ошибка: 'coroutine' object has no attribute 'alert'
+ERROR:root:Фатальная ошибка: 'coroutine' object has no attribute 'alert'
+ERROR:root:Фатальная ошибка: 'coroutine' object has no attribute 'alert'

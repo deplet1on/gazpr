@@ -17,11 +17,41 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import List, Optional
 from fastapi import Body
+from fastapi import WebSocket
+from fastapi_cache.decorator import cache
+from contextlib import asynccontextmanager
+from fastapi_cache.backends.redis import RedisBackend
+from redis import asyncio as aioredis
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.inmemory import InMemoryBackend
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
+from typing import Set
+from fastapi.websockets import WebSocket
 
+alert_connections: Set[WebSocket] = set()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Инициализация при старте
+    print("App started")
+    yield
+    # Очистка при завершении
+    print("Closing connections")
+    for connection in alert_connections:
+        await connection.close()
+    alert_connections.clear()
+
+app = FastAPI(lifespan=lifespan)
+
+@app.on_event("startup")
+async def startup():
+    FastAPICache.init(InMemoryBackend(), prefix="fastapi-cache")
 
 # Инициализация
 Base = declarative_base()
 load_dotenv()
+
 
 
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -29,7 +59,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL, connect_args={"client_encoding": "UTF8"})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-app = FastAPI()
+
 
 # Настройка CORS
 app.add_middleware(
@@ -147,17 +177,38 @@ def parse_timestamp(time_str: str) -> datetime:
             continue
     raise ValueError(f"Неизвестный формат времени: {time_str}")
 
+@app.websocket("/ws-alert")
+async def websocket_endpoint(websocket: WebSocket):
+    await websocket.accept()
+    alert_connections.add(websocket)
+    
+    try:
+        while True:
+            await websocket.receive_text()
+            
+    except:
+        alert_connections.remove(websocket)
+
+# При загрузке новых данных
+async def notify_clients(alert_data):
+    for connection in alert_connections:
+        await connection.send_json(alert_data)
+
 @app.post("/upload-csv")
 async def upload_csv(file: UploadFile = File(...)):
+    print(f"Received file: {file.filename}") 
     try:
         contents = await file.read()
         text_contents = contents.decode('utf-8-sig')
+        
         csv_reader = csv.DictReader(io.StringIO(text_contents), delimiter=';')
 
         if 'Time' not in csv_reader.fieldnames:
             raise HTTPException(400, "CSV файл не содержит колонку 'Time'")
 
         data_to_insert = []
+        sensor_values = {}  # Словарь для хранения значений по сенсорам
+
         for row in csv_reader:
             try:
                 timestamp = parse_timestamp(row['Time'])
@@ -183,22 +234,52 @@ async def upload_csv(file: UploadFile = File(...)):
                         "sensor_number": sensor_info["sensor_number"],
                         "value": value_float
                     })
+
+                    # Сохраняем значения для вычисления min и max
+                    sensor_key = f"{sensor_info['pipe_number']}_{sensor_info['sensor_type']}_{sensor_info['sensor_number']}"
+                    if sensor_key not in sensor_values:
+                        sensor_values[sensor_key] = []
+                    sensor_values[sensor_key].append(value_float)
+
             except Exception as e:
                 logging.error(f"Ошибка обработки строки: {str(e)}")
                 continue
 
         # Массовая вставка с обработкой конфликтов
-        stmt = insert(SensorData.__table__).on_conflict_do_nothing(
-            constraint='unique_measurement'  # Используем имя ограничения
-        )
+        alert = None
         with SessionLocal() as db:
+            # Вставка данных
+            stmt = insert(SensorData.__table__).on_conflict_do_nothing(
+                constraint='unique_measurement'
+            )
             db.execute(stmt, data_to_insert)
             db.commit()
 
+            # Проверка оповещений для каждого сенсора
+            for sensor_key, values in sensor_values.items():
+                if not values:
+                    continue
+
+                min_val = min(values)
+                max_val = max(values)
+                avg = sum(values) / len(values)
+                threshold = max(values) *0.95
+
+                if avg > threshold:
+                    alert_data = AlertResponse(
+                        alert=True,
+                        message=f"Критическое значение! Среднее: {avg:.2f} > Порог: {threshold:.2f} для сенсора {sensor_key}",
+                        current_avg=avg,
+                        threshold=threshold
+                    )
+                    await notify_clients(alert_data.dict())
+                    alert = alert_data  # Сохраняем для ответа
+
         return {
             "message": "Данные загружены",
-            "new_records": len(data_to_insert),  # Примерное количество новых записей
-            "duplicates": "Недоступно (используйте расширенный анализ)"
+            "new_records": len(data_to_insert),
+            "duplicates": "Недоступно",
+            "alert": alert
         }
 
     except Exception as e:
@@ -419,8 +500,10 @@ def get_extremes(
             logging.error(f"Ошибка: {str(e)}")
             raise HTTPException(500, "Внутренняя ошибка сервера")
         
+# Кэшируем на 5 минут
 @app.get("/check-alert", response_model=AlertResponse)
-def check_alert(
+@cache(expire=300)
+async def check_alert(
     sensor_id: Optional[str] = Query(None),
     start_date: Optional[datetime] = Query(None),
     end_date: Optional[datetime] = Query(None)
