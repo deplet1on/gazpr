@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Query, File, UploadFile, Depends
 from pydantic import BaseModel
-from sqlalchemy import and_, create_engine, Column, Integer, String, Float, TIMESTAMP, UniqueConstraint
+from sqlalchemy import and_, create_engine, Column, Integer, String, Float, TIMESTAMP, UniqueConstraint, func
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
@@ -14,6 +14,8 @@ from typing import List, Optional
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.dialects.postgresql import insert
 from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
+from typing import List, Optional
 
 # Инициализация
 Base = declarative_base()
@@ -49,6 +51,21 @@ class SensorDataResponse(BaseModel):
 
     class Config:
         orm_mode = True
+# Pydantic модель для ответа
+class ExtremesResponse(BaseModel):
+    min: Optional[float]
+    max: Optional[float]
+
+class PaginationMeta(BaseModel):
+    total: int
+    page: int
+    limit: int
+    total_pages: int
+
+# Модель для общего ответа
+class PaginatedResponse(BaseModel):
+    data: List[SensorDataResponse]
+    meta: PaginationMeta
 
 # Модель SQLAlchemy
 class SensorData(Base):
@@ -232,7 +249,7 @@ def get_data_by_date(
             logging.error(f"Ошибка: {str(e)}")
             raise HTTPException(500, "Внутренняя ошибка сервера")
 
-@app.get("/data/by-page", response_model=List[SensorDataResponse])
+@app.get("/data/by-page", response_model=PaginatedResponse)
 def get_data_by_page(
     sensor_id: Optional[str] = Query(None, description="Идентификатор датчика (например, T1_K_1)"),
     start_date: Optional[datetime] = Query(None, description="Начальная дата для фильтрации"),
@@ -246,12 +263,11 @@ def get_data_by_page(
         try:
             query = db.query(SensorData)
 
-            # Фильтр по sensor_id
+            # Применяем фильтры
             if sensor_id:
                 parsed = parse_sensor_column(sensor_id)
                 if not parsed:
                     raise HTTPException(400, "Неверный формат sensor_id")
-
                 query = query.filter(
                     and_(
                         SensorData.pipe_number == parsed["pipe_number"],
@@ -260,30 +276,42 @@ def get_data_by_page(
                     )
                 )
 
-            # Фильтр по датам
             if start_date:
                 query = query.filter(SensorData.timestamp >= start_date)
             if end_date:
                 query = query.filter(SensorData.timestamp <= end_date)
 
-            # Фильтр по значению
             if min_value is not None:
                 query = query.filter(SensorData.value >= min_value)
             if max_value is not None:
                 query = query.filter(SensorData.value <= max_value)
 
-            # Пагинация
+            # Вычисляем общее количество записей
             total_count = query.count()
+            
+            # Вычисляем общее количество страниц
+            total_pages = (total_count + limit - 1) // limit
+
+            # Получаем данные для текущей страницы
             result = query.offset((page - 1) * limit).limit(limit).all()
 
-            return [SensorDataResponse(
-                timestamp=item.timestamp,
-                pipe_number=item.pipe_number,
-                sensor_type=item.sensor_type,
-                sensor_number=item.sensor_number,
-                value=item.value,
-                sensor_id=f"{item.pipe_number}_{item.sensor_type}_{item.sensor_number}"
-            ) for item in result]
+            # Формируем ответ
+            return PaginatedResponse(
+                data=[SensorDataResponse(
+                    timestamp=item.timestamp,
+                    pipe_number=item.pipe_number,
+                    sensor_type=item.sensor_type,
+                    sensor_number=item.sensor_number,
+                    value=item.value,
+                    sensor_id=f"{item.pipe_number}_{item.sensor_type}_{item.sensor_number}"
+                ) for item in result],
+                meta=PaginationMeta(
+                    total=total_count,
+                    page=page,
+                    limit=limit,
+                    total_pages=max(total_pages, 1)  # Минимум 1 страница
+                )
+            )
 
         except Exception as e:
             logging.error(f"Ошибка: {str(e)}")
@@ -325,3 +353,49 @@ def get_unique_sensors():
         query = db.query(SensorData).distinct(SensorData.pipe_number, SensorData.sensor_type, SensorData.sensor_number)
         sensors = [f"{item.pipe_number}_{item.sensor_type}_{item.sensor_number}" for item in query]
         return {"sensors": sensors}
+
+@app.get("/data/extremes", response_model=ExtremesResponse)
+def get_extremes(
+    sensor_id: Optional[str] = Query(None, description="Идентификатор датчика"),
+    start_date: Optional[datetime] = Query(None, description="Начальная дата"),
+    end_date: Optional[datetime] = Query(None, description="Конечная дата"),
+):
+    with SessionLocal() as db:
+        try:
+            query = db.query(
+                func.min(SensorData.value).label("min"),
+                func.max(SensorData.value).label("max")
+            )
+
+            # Фильтр по sensor_id
+            if sensor_id:
+                parsed = parse_sensor_column(sensor_id)
+                if not parsed:
+                    raise HTTPException(400, "Неверный формат sensor_id")
+                
+                query = query.filter(
+                    and_(
+                        SensorData.pipe_number == parsed["pipe_number"],
+                        SensorData.sensor_type == parsed["sensor_type"],
+                        SensorData.sensor_number == parsed["sensor_number"]
+                    )
+                )
+
+            # Фильтр по датам
+            if start_date:
+                query = query.filter(SensorData.timestamp >= start_date)
+            if end_date:
+                query = query.filter(SensorData.timestamp <= end_date)
+
+            result = query.one()
+            
+            return {
+                "min": result.min,
+                "max": result.max
+            }
+        
+        except NoResultFound:
+            return {"min": None, "max": None}
+        except Exception as e:
+            logging.error(f"Ошибка: {str(e)}")
+            raise HTTPException(500, "Внутренняя ошибка сервера")
