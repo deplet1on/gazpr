@@ -1,19 +1,19 @@
-from fastapi import FastAPI, HTTPException, Query, File, UploadFile, Depends
-from pydantic import BaseModel
-from sqlalchemy import and_, create_engine, Column, Integer, String, Float, TIMESTAMP, UniqueConstraint
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query
+from fastapi.responses import JSONResponse, StreamingResponse
+from sqlalchemy import UniqueConstraint, create_engine, Column, Integer, String, Float, TIMESTAMP, and_, text
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-from dotenv import load_dotenv
-import os
+from sqlalchemy.orm import sessionmaker, Session
+from pydantic import BaseModel
+from datetime import datetime
 import csv
 import io
-import re
 import logging
-from datetime import datetime
-from typing import List, Optional
+import re
+import os
+from typing import Optional, List
+from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.dialects.postgresql import insert
-from fastapi.responses import StreamingResponse
 
 # Инициализация
 Base = declarative_base()
@@ -62,9 +62,9 @@ class SensorData(Base):
 
     __table_args__ = (
         UniqueConstraint(
-            'timestamp',
-            'pipe_number',
-            'sensor_type',
+            'timestamp', 
+            'pipe_number', 
+            'sensor_type', 
             'sensor_number',
             name='unique_measurement'
         ),
@@ -77,20 +77,20 @@ def parse_sensor_column(column_name: str) -> Optional[dict]:
     """Парсинг названий столбцов с возвратом словаря"""
     clean_name = column_name.split(" (")[0].strip()
     patterns = [
-        (r"T(\d+)_([A-Za-z]+)_(\d+)",
+        (r"T(\d+)_([A-Za-z]+)_(\d+)", 
          lambda m: {
              "pipe_number": f"T{m.group(1)}",
              "sensor_type": m.group(2),
              "sensor_number": int(m.group(3))
          }),
-        (r"T_(\d+)",
+        (r"T_(\d+)", 
          lambda m: {
              "pipe_number": f"T_{m.group(1)}",  # Исправлено формирование pipe_number
              "sensor_type": "T",
              "sensor_number": int(m.group(1))
          })
     ]
-
+    
     for pattern, handler in patterns:
         match = re.match(pattern, clean_name)
         if match:
@@ -117,7 +117,7 @@ async def upload_csv(file: UploadFile = File(...)):
         contents = await file.read()
         text_contents = contents.decode('utf-8-sig')
         csv_reader = csv.DictReader(io.StringIO(text_contents), delimiter=';')
-
+        
         if 'Time' not in csv_reader.fieldnames:
             raise HTTPException(400, "CSV файл не содержит колонку 'Time'")
 
@@ -125,7 +125,7 @@ async def upload_csv(file: UploadFile = File(...)):
         for row in csv_reader:
             try:
                 timestamp = parse_timestamp(row['Time'])
-
+                
                 for col_name, value in row.items():
                     if col_name == 'Time' or not value:
                         continue
@@ -180,13 +180,13 @@ def get_data_by_date(
     with SessionLocal() as db:
         try:
             query = db.query(SensorData)
-
+            
             # Фильтр по sensor_id
             if sensor_id:
                 parsed = parse_sensor_column(sensor_id)
                 if not parsed:
                     raise HTTPException(400, "Неверный формат sensor_id")
-
+                
                 query = query.filter(
                     and_(
                         SensorData.pipe_number == parsed["pipe_number"],
@@ -194,20 +194,9 @@ def get_data_by_date(
                         SensorData.sensor_number == parsed["sensor_number"]
                     )
                 )
-                
 
             # Фильтр по датам
             query = query.filter(SensorData.timestamp >= start_date)
-            if end_date is not None:
-                query = query.filter(SensorData.timestamp <= end_date)
-            if min_value is not None and max_value is not None:
-                query = query.filter(SensorData.value >= min_value).filter(SensorData.value <= max_value)
-            elif min_value is not None:
-                query = query.filter(SensorData.value >= min_value)
-            elif max_value is not None:
-                query = query.filter(SensorData.value <= max_value)
-            else:
-                pass
             query = query.filter(SensorData.timestamp <= end_date)
 
             # Фильтр по значению
@@ -218,7 +207,7 @@ def get_data_by_date(
 
             # Получаем данные
             result = query.all()
-
+            
             return [SensorDataResponse(
                 timestamp=item.timestamp,
                 pipe_number=item.pipe_number,
@@ -227,11 +216,11 @@ def get_data_by_date(
                 value=item.value,
                 sensor_id=f"{item.pipe_number}_{item.sensor_type}_{item.sensor_number}"
             ) for item in result]
-
+        
         except Exception as e:
             logging.error(f"Ошибка: {str(e)}")
             raise HTTPException(500, "Внутренняя ошибка сервера")
-
+        
 @app.get("/data/by-page", response_model=List[SensorDataResponse])
 def get_data_by_page(
     sensor_id: Optional[str] = Query(None, description="Идентификатор датчика (например, T1_K_1)"),
@@ -245,13 +234,13 @@ def get_data_by_page(
     with SessionLocal() as db:
         try:
             query = db.query(SensorData)
-
+            
             # Фильтр по sensor_id
             if sensor_id:
                 parsed = parse_sensor_column(sensor_id)
                 if not parsed:
                     raise HTTPException(400, "Неверный формат sensor_id")
-
+                
                 query = query.filter(
                     and_(
                         SensorData.pipe_number == parsed["pipe_number"],
@@ -273,9 +262,8 @@ def get_data_by_page(
                 query = query.filter(SensorData.value <= max_value)
 
             # Пагинация
-            total_count = query.count()
             result = query.offset((page - 1) * limit).limit(limit).all()
-
+            
             return [SensorDataResponse(
                 timestamp=item.timestamp,
                 pipe_number=item.pipe_number,
@@ -284,7 +272,7 @@ def get_data_by_page(
                 value=item.value,
                 sensor_id=f"{item.pipe_number}_{item.sensor_type}_{item.sensor_number}"
             ) for item in result]
-
+        
         except Exception as e:
             logging.error(f"Ошибка: {str(e)}")
             raise HTTPException(500, "Внутренняя ошибка сервера")
@@ -300,7 +288,7 @@ def export_csv():
             yield buffer.getvalue()
             buffer.seek(0)
             buffer.truncate(0)
-
+            
             for item in query:
                 writer.writerow([
                     item.timestamp.isoformat(),
@@ -318,10 +306,3 @@ def export_csv():
         media_type="text/csv",
         headers={"Content-Disposition": "attachment; filename=data.csv"}
     )
-
-@app.get("/data/sensors")
-def get_unique_sensors():
-    with SessionLocal() as db:
-        query = db.query(SensorData).distinct(SensorData.pipe_number, SensorData.sensor_type, SensorData.sensor_number)
-        sensors = [f"{item.pipe_number}_{item.sensor_type}_{item.sensor_number}" for item in query]
-        return {"sensors": sensors}
