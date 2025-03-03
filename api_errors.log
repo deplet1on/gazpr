@@ -36,3 +36,4 @@ ERROR:root:Фатальная ошибка: argument of type 'NoneType' is not iterable
 ERROR:root:Ошибка: 400: Неверный формат sensor_id
 ERROR:root:Ошибка: 400: Неверный формат sensor_id
 ERROR:root:Ошибка: 400: Неверный формат sensor_id
+ERROR:root:Ошибка: 400: Неверный формат sensor_id
