@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Query, File, UploadFile, Depends
+from fastapi import FastAPI, HTTPException, Query, File, UploadFile
 from pydantic import BaseModel
 from sqlalchemy import and_, create_engine, Column, Integer, String, Float, TIMESTAMP, UniqueConstraint, func
 from sqlalchemy.ext.declarative import declarative_base
@@ -16,10 +16,13 @@ from sqlalchemy.dialects.postgresql import insert
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import List, Optional
+from fastapi import Body
+
 
 # Инициализация
 Base = declarative_base()
 load_dotenv()
+
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
@@ -49,12 +52,28 @@ class SensorDataResponse(BaseModel):
     value: float
     sensor_id: str  # Добавлено поле
 
-    class Config:
-        orm_mode = True
+class AlertRequest(BaseModel):
+    sensor_id: Optional[str] 
+    start_date: Optional[datetime] 
+    end_date: Optional[datetime] 
+
+class Config:
+    orm_mode = True
 # Pydantic модель для ответа
 class ExtremesResponse(BaseModel):
     min: Optional[float]
     max: Optional[float]
+class AlertResponse(BaseModel):
+    alert: bool
+    message: Optional[str]
+    current_avg: Optional[float]
+    threshold: float
+
+class UploadResponse(BaseModel):
+    message: str
+    new_records: int
+    duplicates: int
+    alert: Optional[AlertResponse]
 
 class PaginationMeta(BaseModel):
     total: int
@@ -399,3 +418,45 @@ def get_extremes(
         except Exception as e:
             logging.error(f"Ошибка: {str(e)}")
             raise HTTPException(500, "Внутренняя ошибка сервера")
+        
+@app.get("/check-alert", response_model=AlertResponse)
+def check_alert(
+    sensor_id: Optional[str] = Query(None),
+    start_date: Optional[datetime] = Query(None),
+    end_date: Optional[datetime] = Query(None)
+):
+    with SessionLocal() as db:
+        try:
+            # Получаем экстремальные значения
+            extremes = get_extremes(
+                sensor_id=sensor_id,
+                start_date=start_date,
+                end_date=end_date
+
+            )
+            
+            
+            if extremes['min'] is None or extremes['max'] is None:
+                return AlertResponse(
+                    alert=False,
+                    message="Нет данных для анализа",
+                    current_avg=None,
+                    threshold=None
+
+                )
+            
+            # Пример логики: порог = 90% от максимального значения
+            threshold = extremes['max'] * 0.9
+            avg = (extremes['min'] + extremes['max']) / 2
+            alert = avg > threshold
+            print(threshold, avg, alert)
+            return AlertResponse(
+                alert=alert,
+                message=f"Среднее значение {avg:.2f} {'превысило' if alert else 'ниже'} порога {threshold:.2f}",
+                current_avg=avg,
+                threshold=threshold
+            )
+            print('h3')
+        except Exception as e:
+            logging.error(f"Ошибка проверки: {str(e)}", exc_info=True)
+            raise HTTPException(500, "Ошибка при проверке уведомлений")

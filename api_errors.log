@@ -37,3 +37,204 @@ ERROR:root:Ошибка: 400: Неверный формат sensor_id
 ERROR:root:Ошибка: 400: Неверный формат sensor_id
 ERROR:root:Ошибка: 400: Неверный формат sensor_id
 ERROR:root:Ошибка: 400: Неверный формат sensor_id
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Alert check failed: 'dict' object has no attribute 'min'
+ERROR:root:Error in check_alert function: 500: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 438, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 437, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 437, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 437, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'max'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 449, in check_alert
+    threshold = extremes.max * 0.9
+                ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'max'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 450, in check_alert
+    avg = (extremes.min + extremes.max) / 2
+           ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 451, in check_alert
+    avg = (extremes.min + extremes.max) / 2
+           ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
+ERROR:root:Ошибка проверки: 'dict' object has no attribute 'min'
+Traceback (most recent call last):
+  File "D:\gazpr\main.py", line 439, in check_alert
+    if extremes.min is None or extremes.max is None:
+       ^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'min'
