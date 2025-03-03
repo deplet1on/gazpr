@@ -1,0 +1,4 @@
+.env
+.venv
+__pyache
+.package-lock.json
